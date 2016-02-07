@@ -5,7 +5,7 @@
  *      Author: andrew
  */
 
-#define TEST_ZERO_OFFSET
+//#define TEST_ZERO_OFFSET
 
 #include "UVmeter.h"
 //#include UVMCalibration.h
@@ -14,9 +14,10 @@ UVmeter::UVmeter() {
 	// TODO Auto-generated constructor stub
 	calib = new UVMCalibration();
 	display = new UVMDisplay();
+	thermo = new DallasThermo();
 	stringComplete = false;  // whether the string is complete
-	inputString.reserve(80); // reserve 200 bytes for the inputString
-	commandString.reserve(80); // reserve 200 bytes for the inputString
+	inputString.reserve(80); // reserve 80 bytes for the inputString
+	commandString.reserve(80); // reserve 80 bytes for the inputString
 	commandString = "";         // a string to hold serial command
 	meanSensorVal = 0;  // sensor ADC reading
 	meanZeroVal = 0;  // sensor zero offset
@@ -35,11 +36,11 @@ void UVmeter::handleSerialCommands() {
 	serialEvent();
 	if (stringComplete) {
 		commandString = inputString;
-		Serial.print("commandString: ");
+		//Serial.print("commandString: ");
 		Serial.print(commandString);
 		Serial.println("!");
 		commandString.trim();
-		Serial.print("commandString: ");
+		//Serial.print("commandString: ");
 		Serial.print(commandString);
 		Serial.println("!");
 
@@ -121,8 +122,9 @@ void UVmeter::setup(void) {
 	display->initialize();
 	//Serial.begin(9600);
 	// Internal 1.1V ADC reference ?
-	analogReference(INTERNAL);
-
+	analogReference(EXTERNAL);
+	// set up temperature sensor
+	thermo->setup();
 }
 
 void UVmeter::loop(void) {
@@ -136,9 +138,11 @@ void UVmeter::loop(void) {
 	int16_t sensorVal;
 	int32_t sumSensorVal = 0;
 	int64_t sumSensorVal2 = 0.0;
+#ifdef TEST_ZERO_OFFSET
 	int16_t zeroVal;
 	int32_t sumZeroVal = 0;
 	int64_t sumZeroVal2 = 0.0;
+#endif /* TEST_ZERO_OFFSET */
 	int16_t sensorHiVal;
 	int32_t sumSensorHiVal = 0;
 	int16_t batteryVal;
@@ -146,15 +150,20 @@ void UVmeter::loop(void) {
 	uint32_t nBatterySamples = 0;
 	const uint16_t nSamples = 1000;
 
+	// request a temperature measurement
+	thermo->requestTemperature();
+
 	for (uint16_t i = 0; i < nSamples; i++) {
 		// read the value from the sensor:
 		sensorVal = analogRead(sensorPin);
 		sumSensorVal += sensorVal;
 		sumSensorVal2 += (int32_t)sensorVal*sensorVal;
 		// read the zero offset value
+#ifdef TEST_ZERO_OFFSET
 		zeroVal = analogRead(zeroRefPin);
 		sumZeroVal += zeroVal;
 		sumZeroVal2 += (int32_t)zeroVal*zeroVal;
+#endif /* TEST_ZERO_OFFSET */
 		// read the battery monitor value:
 		sensorHiVal = analogRead(sensorHiPin);
 		sumSensorHiVal += sensorHiVal;
@@ -165,6 +174,12 @@ void UVmeter::loop(void) {
 		}
 		//delayMicroseconds(100);
 	}
+
+	// get the temperature measurement we requested earlier
+	float temperature = thermo->getTemperature();
+	Serial.print("    Temperature: ");
+	Serial.print(temperature);
+
 	meanSensorVal = (float)sumSensorVal/nSamples;
 	sdSensorVal = sqrt((float)(sumSensorVal2 - (int64_t)sumSensorVal*sumSensorVal/nSamples)/(nSamples - 1));
 #ifdef TEST_ZERO_OFFSET
@@ -174,7 +189,7 @@ void UVmeter::loop(void) {
 	meanSensorHiVal = (float)sumSensorHiVal/nSamples;
 	meanBatteryVal = sumBatteryVal/nBatterySamples;
 
-	Serial.print("Sensor: ");
+	Serial.print("    Sensor: ");
 	Serial.print(meanSensorVal);
 	Serial.print(" +/- ");
 	Serial.print(sdSensorVal);
@@ -191,21 +206,25 @@ void UVmeter::loop(void) {
 
 	// Update the display
 	if (meanSensorVal < 1000) {
-		displayValue = (meanSensorVal - calib->sensorOffset) * calib->sensorScaling;
+		displayValue = (meanSensorVal - calib->sensorOffset - 0.0128 * (temperature - 24.0)) * calib->sensorScaling;
+
+		// TODO fix this properly!!
+		displayValue += 0.1; // fiddle for error due to USB powering
+
 		//Serial.println(calib->sensorOffset);
 		//Serial.println(calib->sensorScaling);
 	}
 	else {
 		displayValue = (meanSensorHiVal - calib->sensorHiOffset) * calib->sensorHiScaling;
 	}
-	if (displayValue > 199.9) {
-		displayValue = 199.9;
+	if (displayValue > 799.9) {
+		displayValue = 799.9;
 		display->overRangeError = true;
 	}
 	else {
 		display->overRangeError = false;
 	}
-	if (displayValue < 0) displayValue = 0; // clip -ve values to 0
+	//if (displayValue < 0) displayValue = 0; // clip -ve values to 0
 	//Serial.println(displayValue);
 	display->sensorValue = displayValue;
 	display->batteryVoltage = meanBatteryVal * calib->batteryScaling;

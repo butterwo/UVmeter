@@ -11,6 +11,7 @@
 #include "Arduino.h"
 #include "UVMCalibration.h"
 #include "UVMDisplay.h"
+#include "DallasThermo.h"
 
 class UVmeter {
 public:
@@ -28,6 +29,7 @@ private:
 	UVMCalibration *calib;
 	UVMDisplay *display;
 	//UVMComms *comms(&calib);
+	DallasThermo *thermo;
 	const int sensorPin = A0;    // the input pin for the UV sensor
 	const int sensorHiPin = A1;   // the input pin for the UV sensor high range attenuated
 	const int zeroRefPin = A2;   // the input pin for the zero offset reference

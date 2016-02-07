@@ -23,13 +23,18 @@
 							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1409095472" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs"/>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.1624502120" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.239157887" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\packages\framework-arduinoavr\variants\standard"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\packages\framework-arduinoavr\variants\eightanaloginputs"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\packages\framework-arduinoavr\cores\arduino"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\lib\OneWire_ID1"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\lib\DallasTemperature_ID54"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\packages\framework-arduinoavr\libraries\EEPROM"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\lib\U8glib_ID7"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\lib\U8glib_ID7\utility"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.922107295" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="F_CPU=16000000L"/>
 									<listOptionValue builtIn="false" value="ARDUINO_ARCH_AVR"/>
-									<listOptionValue builtIn="false" value="ARDUINO_AVR_UNO"/>
+									<listOptionValue builtIn="false" value="ARDUINO_AVR_NANO"/>
 									<listOptionValue builtIn="false" value="ARDUINO=10607"/>
 									<listOptionValue builtIn="false" value="PLATFORMIO=020701"/>
 									<listOptionValue builtIn="false" value="__AVR_ATmega328P__"/>
@@ -38,13 +43,18 @@
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.54121539" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1096940598" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\packages\framework-arduinoavr\variants\standard"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\packages\framework-arduinoavr\variants\eightanaloginputs"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\packages\framework-arduinoavr\cores\arduino"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\lib\OneWire_ID1"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\lib\DallasTemperature_ID54"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\packages\framework-arduinoavr\libraries\EEPROM"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\lib\U8glib_ID7"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\lib\U8glib_ID7\utility"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1198905600" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="F_CPU=16000000L"/>
 									<listOptionValue builtIn="false" value="ARDUINO_ARCH_AVR"/>
-									<listOptionValue builtIn="false" value="ARDUINO_AVR_UNO"/>
+									<listOptionValue builtIn="false" value="ARDUINO_AVR_NANO"/>
 									<listOptionValue builtIn="false" value="ARDUINO=10607"/>
 									<listOptionValue builtIn="false" value="PLATFORMIO=020701"/>
 									<listOptionValue builtIn="false" value="__AVR_ATmega328P__"/>
@@ -53,13 +63,18 @@
 							</tool>
 							<tool id="org.eclipse.cdt.build.core.settings.holder.1310559623" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.41298875" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\packages\framework-arduinoavr\variants\standard"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\packages\framework-arduinoavr\variants\eightanaloginputs"/>
 									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\packages\framework-arduinoavr\cores\arduino"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\lib\OneWire_ID1"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\lib\DallasTemperature_ID54"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\packages\framework-arduinoavr\libraries\EEPROM"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\lib\U8glib_ID7"/>
+									<listOptionValue builtIn="false" value="${USERPROFILE}\.platformio\lib\U8glib_ID7\utility"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.884639970" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="F_CPU=16000000L"/>
 									<listOptionValue builtIn="false" value="ARDUINO_ARCH_AVR"/>
-									<listOptionValue builtIn="false" value="ARDUINO_AVR_UNO"/>
+									<listOptionValue builtIn="false" value="ARDUINO_AVR_NANO"/>
 									<listOptionValue builtIn="false" value="ARDUINO=10607"/>
 									<listOptionValue builtIn="false" value="PLATFORMIO=020701"/>
 									<listOptionValue builtIn="false" value="__AVR_ATmega328P__"/>
@@ -85,7 +100,7 @@
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="refreshScope" versionNumber="2">
 		<configuration configurationName="Default">
-			<resource resourceType="PROJECT" workspacePath="/uno"/>
+			<resource resourceType="PROJECT" workspacePath="/nanoatmega328"/>
 		</configuration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>

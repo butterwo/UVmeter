@@ -20,21 +20,21 @@ UVMCalibration::UVMCalibration() {
 
 	unsigned long crc;
 	EEPROM.get(eeAddressCalibCRC, crc);
-	Serial.print("crc: ");
-	Serial.println(crc);
-	Serial.print("calculateCRC: ");
-	Serial.println(calculateCRC());
+//	Serial.print("crc: ");
+//	Serial.println(crc);
+//	Serial.print("calculateCRC: ");
+//	Serial.println(calculateCRC());
 	if (calculateCRC() == crc) {
 		float ref, value;
 		EEPROM.get(eeAddressCalib0, sensorOffset);
 		EEPROM.get(eeAddressCalib0Hi, sensorHiOffset);
 		sensorScaling = (EEPROM.get(eeAddressCalib1Ref, ref)) / (EEPROM.get(eeAddressCalib1Val, value) - sensorOffset);
 		sensorHiScaling = (EEPROM.get(eeAddressCalib1Ref, ref)) / (EEPROM.get(eeAddressCalib1HiVal, value) - sensorHiOffset);
-		Serial.print("sensorScaling: ");
-		Serial.println(sensorScaling, 6);
+		//Serial.print("sensorScaling: ");
+		//Serial.println(sensorScaling, 6);
 		batteryScaling = 9.0 / (EEPROM.get(eeAddressCalibBatt, value));
-		Serial.print("batteryScaling: ");
-		Serial.println(batteryScaling, 6);
+		//Serial.print("batteryScaling: ");
+		//Serial.println(batteryScaling, 6);
 		calibrationError = false;
 	}
 
