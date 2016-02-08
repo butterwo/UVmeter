@@ -80,7 +80,7 @@ void UVMDisplay::drawBatteryIndicator() {
 	const int x = 0;
 	const int y = 0;
 	u8g->drawFrame(x, y, 21, 10);
-	u8g->drawBox(x+21, y+3, 2, 5);
+	u8g->drawBox(x+21, y+3, 2, 4);
 	if (batteryVoltage > battery_thresh[2]) u8g->drawBox(x+2, y+2, 5, 6);
 	if (batteryVoltage > battery_thresh[1]) u8g->drawBox(x+8, y+2, 5, 6);
 	if (batteryVoltage > battery_thresh[0]) u8g->drawBox(x+14, y+2, 5, 6);

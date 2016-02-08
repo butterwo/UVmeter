@@ -209,7 +209,7 @@ void UVmeter::loop(void) {
 		displayValue = (meanSensorVal - calib->sensorOffset - 0.0128 * (temperature - 24.0)) * calib->sensorScaling;
 
 		// TODO fix this properly!!
-		displayValue += 0.1; // fiddle for error due to USB powering
+		displayValue += 0.12; // fiddle for error due to USB powering
 
 		//Serial.println(calib->sensorOffset);
 		//Serial.println(calib->sensorScaling);
