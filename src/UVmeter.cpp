@@ -205,7 +205,7 @@ void UVmeter::loop(void) {
 	Serial.println(meanSensorHiVal);
 
 	// Update the display
-	if (meanSensorVal < 1000) {
+	//if (meanSensorVal < 1000) {
 		displayValue = (meanSensorVal - calib->sensorOffset - 0.0128 * (temperature - 24.0)) * calib->sensorScaling;
 
 		// TODO fix this properly!!
@@ -213,12 +213,12 @@ void UVmeter::loop(void) {
 
 		//Serial.println(calib->sensorOffset);
 		//Serial.println(calib->sensorScaling);
-	}
-	else {
-		displayValue = (meanSensorHiVal - calib->sensorHiOffset) * calib->sensorHiScaling;
-	}
-	if (displayValue > 799.9) {
-		displayValue = 799.9;
+	//}
+	//else {
+	//	displayValue = (meanSensorHiVal - calib->sensorHiOffset) * calib->sensorHiScaling;
+	//}
+	if (displayValue > 199.9) {
+		displayValue = 199.9;
 		display->overRangeError = true;
 	}
 	else {
